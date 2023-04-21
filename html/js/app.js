@@ -402,7 +402,7 @@ function FormatItemInfo(itemData) {
                 "</span></p>"
             );
         } else if (itemData.name == "driver_license") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html(
                 "<p><strong>Voornaam: </strong><span>" +
                 itemData.info.firstname +
@@ -415,7 +415,7 @@ function FormatItemInfo(itemData) {
                 "</span></p>"
             );
         } else if (itemData.name == "weaponlicense") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html(
                 "<p><strong>Voornaam: </strong><span>" +
                 itemData.info.firstname +
@@ -426,7 +426,7 @@ function FormatItemInfo(itemData) {
                 "</span></p>"
             );
         } else if (itemData.name == "lawyerpass") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html(
                 "<p><strong>Pass-ID: </strong><span>" +
                 itemData.info.id +
@@ -439,12 +439,12 @@ function FormatItemInfo(itemData) {
                 "</span></p>"
             );
         } else if (itemData.name == "harness") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html(
                 "<p>" + itemData.info.uses + " gebruiken over.</p>"
             );
         } else if (itemData.type == "weapon") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             if (itemData.info.ammo == undefined) {
                 itemData.info.ammo = 0;
             } else {
@@ -480,7 +480,7 @@ function FormatItemInfo(itemData) {
                 );
             }
         } else if (itemData.name == "filled_evidence_bag") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             if (itemData.info.type == "casing") {
                 $(".item-info-description").html(
                     "<p><strong>Bewijsmateriaal: </strong><span>" +
@@ -541,40 +541,40 @@ function FormatItemInfo(itemData) {
             itemData.info.costs != undefined &&
             itemData.info.costs != null
         ) {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html("<p>" + itemData.info.costs + "</p>");
         } else if (itemData.name == "stickynote") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html("<p>" + itemData.info.label + "</p>");
         } else if (itemData.name == "moneybag") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html(
                 "<p><strong>Waarde: </strong><span>&euro; " +
                 itemData.info.cash +
                 "</span></p>"
             );
         } else if (itemData.name == "markedbills") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html(
                 "<p><strong>Waarde: </strong><span>&euro; " +
                 itemData.info.worth +
                 "</span></p>"
             );
         } else if (itemData.name == "visa" || itemData.name == "mastercard") {
-            $(".item-info-title").html('<p>'+itemData.label+'</p>')
+            $(".item-info-title").html('<p>'+`${itemData.info.label|| itemData.label}`+'</p>')
             var str = ""+ itemData.info.cardNumber + "";
             var res = str.slice(12);
             var cardNumber = "************" + res;
             $(".item-info-description").html('<p><strong>Kaarthouder: </strong><span>' + itemData.info.name + '</span></p><p><strong>Rijksregisternummer: </strong><span>' + itemData.info.citizenid + '</span></p><p><strong>Kaartnummer: </strong><span>' + cardNumber + '</span></p>');			
         } else if (itemData.name == "labkey") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html("<p>Lab: " + itemData.info.lab + "</p>");
         } else {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
             $(".item-info-description").html("<p>" + itemData.description + "</p>");
         }
     } else {
-        $(".item-info-title").html("<p>" + itemData.label + "</p>");
+        $(".item-info-title").html("<p>" + `${itemData.info.label|| itemData.label}` + "</p>");
         $(".item-info-description").html("<p>" + itemData.description + "</p>");
     }
 }
@@ -809,7 +809,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 .find("[data-slot=" + $fromSlot + "]")
                 .html(
                     '<div class="item-slot-img"><img src="images/' +
-                    itemData.image +
+                    `${itemData.info.image|| itemData.image}` +
                     '" alt="' +
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>(' +
@@ -817,7 +817,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     ") &euro; " +
                     itemData.price +
                     '</p></div><div class="item-slot-label"><p>' +
-                    itemData.label +
+                    `${itemData.info.label|| itemData.label}` +
                     "</p></div>"
                 );
         } else {
@@ -825,7 +825,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 .find("[data-slot=" + $fromSlot + "]")
                 .html(
                     '<div class="item-slot-img"><img src="images/' +
-                    itemData.image +
+                    `${itemData.info.image|| itemData.image}` +
                     '" alt="' +
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>' +
@@ -833,7 +833,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     " (" +
                     ((itemData.weight * itemData.amount) / 1000).toFixed(1) +
                     ')</p></div><div class="item-slot-label"><p>' +
-                    itemData.label +
+                    `${itemData.info.label|| itemData.label}` +
                     "</p></div>"
                 );
         }
@@ -853,7 +853,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 .find("[data-slot=" + $fromSlot + "]")
                 .html(
                     '<div class="item-slot-img"><img src="images/' +
-                    itemData.image +
+                    `${itemData.info.image|| itemData.image}` +
                     '" alt="' +
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>(' +
@@ -861,7 +861,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     ") &euro; " +
                     itemData.price +
                     '</p></div><div class="item-slot-label"><p>' +
-                    itemData.label +
+                    `${itemData.info.label|| itemData.label}` +
                     "</p></div>"
                 );
         } else {
@@ -869,7 +869,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 .find("[data-slot=" + $fromSlot + "]")
                 .html(
                     '<div class="item-slot-img"><img src="images/' +
-                    itemData.image +
+                    `${itemData.info.image|| itemData.image}` +
                     '" alt="' +
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>' +
@@ -877,7 +877,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     " (" +
                     ((itemData.weight * itemData.amount) / 1000).toFixed(1) +
                     ')</p></div><div class="item-slot-label"><p>' +
-                    itemData.label +
+                    `${itemData.info.label|| itemData.label}` +
                     "</p></div>"
                 );
         }
@@ -896,7 +896,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 .find("[data-slot=" + $toSlot + "]")
                 .html(
                     '<div class="item-slot-img"><img src="images/' +
-                    itemData.image +
+                    `${itemData.info.image|| itemData.image}` +
                     '" alt="' +
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>(' +
@@ -904,7 +904,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     ") &euro; " +
                     itemData.price +
                     '</p></div><div class="item-slot-label"><p>' +
-                    itemData.label +
+                    `${itemData.info.label|| itemData.label}` +
                     "</p></div>"
                 );
         } else {
@@ -912,7 +912,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 .find("[data-slot=" + $toSlot + "]")
                 .html(
                     '<div class="item-slot-img"><img src="images/' +
-                    itemData.image +
+                    `${itemData.info.image|| itemData.image}` +
                     '" alt="' +
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>' +
@@ -920,7 +920,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     " (" +
                     ((itemData.weight * itemData.amount) / 1000).toFixed(1) +
                     ')</p></div><div class="item-slot-label"><p>' +
-                    itemData.label +
+                    `${itemData.info.label|| itemData.label}` +
                     "</p></div>"
                 );
         }
@@ -1064,7 +1064,7 @@ function optionSwitch(
                 '<div class="item-slot-key"><p>' +
                 $toSlot +
                 '</p></div><div class="item-slot-img"><img src="images/' +
-                fromData.image +
+                `${fromData.info.image || fromData.image}` +
                 '" alt="' +
                 fromData.name +
                 '" /></div><div class="item-slot-amount"><p>' +
@@ -1072,7 +1072,7 @@ function optionSwitch(
                 " (" +
                 ((fromData.weight * fromData.amount) / 1000).toFixed(1) +
                 ')</p></div><div class="item-slot-label"><p>' +
-                fromData.label +
+                `${fromData.info.label || fromData.label}` +
                 "</p></div>"
             );
     } else {
@@ -1080,7 +1080,7 @@ function optionSwitch(
             .find("[data-slot=" + $toSlot + "]")
             .html(
                 '<div class="item-slot-img"><img src="images/' +
-                fromData.image +
+                `${fromData.info.image || fromData.image}` +
                 '" alt="' +
                 fromData.name +
                 '" /></div><div class="item-slot-amount"><p>' +
@@ -1088,7 +1088,7 @@ function optionSwitch(
                 " (" +
                 ((fromData.weight * fromData.amount) / 1000).toFixed(1) +
                 ')</p></div><div class="item-slot-label"><p>' +
-                fromData.label +
+                `${fromData.info.label || fromData.label}` +
                 "</p></div>"
             );
     }
@@ -1107,7 +1107,7 @@ function optionSwitch(
                 '<div class="item-slot-key"><p>' +
                 $fromSlot +
                 '</p></div><div class="item-slot-img"><img src="images/' +
-                toData.image +
+                `${toData.info.image || toData.image}` +
                 '" alt="' +
                 toData.name +
                 '" /></div><div class="item-slot-amount"><p>' +
@@ -1115,7 +1115,7 @@ function optionSwitch(
                 " (" +
                 ((toData.weight * toData.amount) / 1000).toFixed(1) +
                 ')</p></div><div class="item-slot-label"><p>' +
-                toData.label +
+                `${toData.info.label || toData.label}` +
                 "</p></div>"
             );
     } else {
@@ -1123,7 +1123,7 @@ function optionSwitch(
             .find("[data-slot=" + $fromSlot + "]")
             .html(
                 '<div class="item-slot-img"><img src="images/' +
-                toData.image +
+                `${toData.info.image || toData.image}` +
                 '" alt="' +
                 toData.name +
                 '" /></div><div class="item-slot-amount"><p>' +
@@ -1131,7 +1131,7 @@ function optionSwitch(
                 " (" +
                 ((toData.weight * toData.amount) / 1000).toFixed(1) +
                 ')</p></div><div class="item-slot-label"><p>' +
-                toData.label +
+                `${toData.info.label || toData.label}` +
                 "</p></div>"
             );
     }
@@ -1194,11 +1194,11 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
         ) {
             var newData = [];
             newData.name = toData.name;
-            newData.label = toData.label;
+            newData.label = `${toData.info.label || toData.label}`;
             newData.amount = parseInt($toAmount) + parseInt(toData.amount);
             newData.type = toData.type;
             newData.description = toData.description;
-            newData.image = toData.image;
+            newData.image = `${toData.info.image || toData.image}`;
             newData.weight = toData.weight;
             newData.info = toData.info;
             newData.useable = toData.useable;
@@ -1316,11 +1316,11 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
             } else if (fromData.amount > $toAmount) {
                 var newDataFrom = [];
                 newDataFrom.name = fromData.name;
-                newDataFrom.label = fromData.label;
+                newDataFrom.label = `${fromData.info.label || fromData.label}`;
                 newDataFrom.amount = parseInt(fromData.amount - $toAmount);
                 newDataFrom.type = fromData.type;
                 newDataFrom.description = fromData.description;
-                newDataFrom.image = fromData.image;
+                newDataFrom.image = `${fromData.info.image || fromData.image}`;
                 newDataFrom.weight = fromData.weight;
                 newDataFrom.price = fromData.price;
                 newDataFrom.info = fromData.info;
@@ -1588,7 +1588,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                         function(item) {
                             $(".combine-option-text").html(
                                 "<p>If you combine these items you get: <b>" +
-                                item.label +
+                                `${item.info.label || item.label}` +
                                 "</b></p>"
                             );
                         }
@@ -1613,12 +1613,12 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 $toInv.find("[data-slot=" + $toSlot + "]").removeClass("item-nodrag");
 
                 var ItemLabel =
-                    '<div class="item-slot-label"><p>' + fromData.label + "</p></div>";
+                    '<div class="item-slot-label"><p>' + `${fromData.info.label || fromData.label}` + "</p></div>";
                 if (fromData.name.split("_")[0] == "weapon") {
                     if (!Inventory.IsWeaponBlocked(fromData.name)) {
                         ItemLabel =
                             '<div class="item-slot-quality"><div class="item-slot-quality-bar"><p>100</p></div></div><div class="item-slot-label"><p>' +
-                            fromData.label +
+                            `${fromData.info.label || fromData.label}` +
                             "</p></div>";
                     }
                 }
@@ -1630,7 +1630,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                             '<div class="item-slot-key"><p>' +
                             $toSlot +
                             '</p></div><div class="item-slot-img"><img src="images/' +
-                            fromData.image +
+                            `${fromData.info.image || fromData.image}` +
                             '" alt="' +
                             fromData.name +
                             '" /></div><div class="item-slot-amount"><p>' +
@@ -1645,7 +1645,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                         .find("[data-slot=" + $toSlot + "]")
                         .html(
                             '<div class="item-slot-key"><p>6 <i class="fas fa-lock"></i></p></div><div class="item-slot-img"><img src="images/' +
-                            fromData.image +
+                            `${fromData.info.image || fromData.image}` +
                             '" alt="' +
                             fromData.name +
                             '" /></div><div class="item-slot-amount"><p>' +
@@ -1660,7 +1660,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                         .find("[data-slot=" + $toSlot + "]")
                         .html(
                             '<div class="item-slot-img"><img src="images/' +
-                            fromData.image +
+                            `${fromData.info.image || fromData.image}` +
                             '" alt="' +
                             fromData.name +
                             '" /></div><div class="item-slot-amount"><p>' +
@@ -1719,12 +1719,12 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     $fromInv.find("[data-slot=" + $fromSlot + "]").data("item", toData);
 
                     var ItemLabel =
-                        '<div class="item-slot-label"><p>' + toData.label + "</p></div>";
+                        '<div class="item-slot-label"><p>' + `${toData.info.label || toData.label}` + "</p></div>";
                     if (toData.name.split("_")[0] == "weapon") {
                         if (!Inventory.IsWeaponBlocked(toData.name)) {
                             ItemLabel =
                                 '<div class="item-slot-quality"><div class="item-slot-quality-bar"><p>100</p></div></div><div class="item-slot-label"><p>' +
-                                toData.label +
+                                `${toData.info.label || toData.label}` +
                                 "</p></div>";
                         }
                     }
@@ -1736,7 +1736,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                                 '<div class="item-slot-key"><p>' +
                                 $fromSlot +
                                 '</p></div><div class="item-slot-img"><img src="images/' +
-                                toData.image +
+                                `${toData.info.image || toData.image}` +
                                 '" alt="' +
                                 toData.name +
                                 '" /></div><div class="item-slot-amount"><p>' +
@@ -1754,7 +1754,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                             .find("[data-slot=" + $fromSlot + "]")
                             .html(
                                 '<div class="item-slot-key"><p>6 <i class="fas fa-lock"></i></p></div><div class="item-slot-img"><img src="images/' +
-                                toData.image +
+                                `${toData.info.image || toData.image}` +
                                 '" alt="' +
                                 toData.name +
                                 '" /></div><div class="item-slot-amount"><p>' +
@@ -1769,7 +1769,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                             .find("[data-slot=" + $fromSlot + "]")
                             .html(
                                 '<div class="item-slot-img"><img src="images/' +
-                                toData.image +
+                                `${toData.info.image || toData.image}` +
                                 '" alt="' +
                                 toData.name +
                                 '" /></div><div class="item-slot-amount"><p>' +
@@ -1878,11 +1878,11 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
             ) {
                 var newDataTo = [];
                 newDataTo.name = fromData.name;
-                newDataTo.label = fromData.label;
+                newDataTo.label = `${fromData.info.label || fromData.label}`;
                 newDataTo.amount = parseInt($toAmount);
                 newDataTo.type = fromData.type;
                 newDataTo.description = fromData.description;
-                newDataTo.image = fromData.image;
+                newDataTo.image = `${fromData.info.image || fromData.image}`;
                 newDataTo.weight = fromData.weight;
                 newDataTo.info = fromData.info;
                 newDataTo.useable = fromData.useable;
@@ -1992,11 +1992,11 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
 
                 var newDataFrom = [];
                 newDataFrom.name = fromData.name;
-                newDataFrom.label = fromData.label;
+                newDataFrom.label = `${fromData.info.label || fromData.label}`;
                 newDataFrom.amount = parseInt(fromData.amount - $toAmount);
                 newDataFrom.type = fromData.type;
                 newDataFrom.description = fromData.description;
-                newDataFrom.image = fromData.image;
+                newDataFrom.image = `${fromData.info.image || fromData.image}`;
                 newDataFrom.weight = fromData.weight;
                 newDataFrom.price = fromData.price;
                 newDataFrom.info = fromData.info;
@@ -2372,12 +2372,12 @@ var requiredItemOpen = false;
                 if (item != null) {
                     totalWeight += item.weight * item.amount;
                     var ItemLabel =
-                        '<div class="item-slot-label"><p>' + item.label + "</p></div>";
+                        '<div class="item-slot-label"><p>' + `${item.info.label || item.label}` + "</p></div>";
                     if (item.name.split("_")[0] == "weapon") {
                         if (!Inventory.IsWeaponBlocked(item.name)) {
                             ItemLabel =
                                 '<div class="item-slot-quality"><div class="item-slot-quality-bar"><p>100</p></div></div><div class="item-slot-label"><p>' +
-                                item.label +
+                                `${item.info.label || item.label}` +
                                 "</p></div>";
                         }
                     }
@@ -2391,7 +2391,7 @@ var requiredItemOpen = false;
                                 '<div class="item-slot-key"><p>' +
                                 item.slot +
                                 '</p></div><div class="item-slot-img"><img src="images/' +
-                                item.image +
+                                `${item.info.image || item.image}` +
                                 '" alt="' +
                                 item.name +
                                 '" /></div><div class="item-slot-amount"><p>' +
@@ -2412,7 +2412,7 @@ var requiredItemOpen = false;
                             .find("[data-slot=" + item.slot + "]")
                             .html(
                                 '<div class="item-slot-key"><p>6 <i class="fas fa-lock"></i></p></div><div class="item-slot-img"><img src="images/' +
-                                item.image +
+                                `${item.info.image || item.image}` +
                                 '" alt="' +
                                 item.name +
                                 '" /></div><div class="item-slot-amount"><p>' +
@@ -2433,7 +2433,7 @@ var requiredItemOpen = false;
                             .find("[data-slot=" + item.slot + "]")
                             .html(
                                 '<div class="item-slot-img"><img src="images/' +
-                                item.image +
+                                `${item.info.image || item.image}` +
                                 '" alt="' +
                                 item.name +
                                 '" /></div><div class="item-slot-amount"><p>' +
@@ -2461,12 +2461,12 @@ var requiredItemOpen = false;
                 if (item != null) {
                     totalWeightOther += item.weight * item.amount;
                     var ItemLabel =
-                        '<div class="item-slot-label"><p>' + item.label + "</p></div>";
+                        '<div class="item-slot-label"><p>' + `${item.info.label || item.label}` + "</p></div>";
                     if (item.name.split("_")[0] == "weapon") {
                         if (!Inventory.IsWeaponBlocked(item.name)) {
                             ItemLabel =
                                 '<div class="item-slot-quality"><div class="item-slot-quality-bar"><p>100</p></div></div><div class="item-slot-label"><p>' +
-                                item.label +
+                                `${item.info.label || item.label}` +
                                 "</p></div>";
                         }
                     }
@@ -2478,12 +2478,12 @@ var requiredItemOpen = false;
                             .find("[data-slot=" + item.slot + "]")
                             .html(
                                 '<div class="item-slot-img"><img src="images/' +
-                                item.image +
+                                `${item.info.image || item.image}` +
                                 '" alt="' +
                                 item.name +
                                 '" /></div><div class="item-slot-amount"><p>(' +
                                 item.amount +
-                                ") &euro; " +
+                                ") $" +
                                 item.price +
                                 "</p></div>" +
                                 ItemLabel
@@ -2493,7 +2493,7 @@ var requiredItemOpen = false;
                             .find("[data-slot=" + item.slot + "]")
                             .html(
                                 '<div class="item-slot-img"><img src="images/' +
-                                item.image +
+                                `${item.info.image || item.image}` +
                                 '" alt="' +
                                 item.name +
                                 '" /></div><div class="item-slot-amount"><p>' +
@@ -2639,7 +2639,7 @@ var requiredItemOpen = false;
                             '<div class="item-slot-key"><p>' +
                             item.slot +
                             '</p></div><div class="item-slot-img"><img src="images/' +
-                            item.image +
+                            `${item.info.image || item.image}` +
                             '" alt="' +
                             item.name +
                             '" /></div><div class="item-slot-amount"><p>' +
@@ -2647,7 +2647,7 @@ var requiredItemOpen = false;
                             " (" +
                             ((item.weight * item.amount) / 1000).toFixed(1) +
                             ')</p></div><div class="item-slot-label"><p>' +
-                            item.label +
+                            `${item.info.label || item.label}` +
                             "</p></div>"
                         );
                     $(".player-inventory")
@@ -2661,7 +2661,7 @@ var requiredItemOpen = false;
                         .find("[data-slot=" + item.slot + "]")
                         .html(
                             '<div class="item-slot-key"><p>6 <i class="fas fa-lock"></i></p></div><div class="item-slot-img"><img src="images/' +
-                            item.image +
+                            `${item.info.image || item.image}` +
                             '" alt="' +
                             item.name +
                             '" /></div><div class="item-slot-amount"><p>' +
@@ -2669,7 +2669,7 @@ var requiredItemOpen = false;
                             " (" +
                             ((item.weight * item.amount) / 1000).toFixed(1) +
                             ')</p></div><div class="item-slot-label"><p>' +
-                            item.label +
+                            `${item.info.label || item.label}` +
                             "</p></div>"
                         );
                     $(".player-inventory")
@@ -2683,7 +2683,7 @@ var requiredItemOpen = false;
                         .find("[data-slot=" + item.slot + "]")
                         .html(
                             '<div class="item-slot-img"><img src="images/' +
-                            item.image +
+                            `${item.info.image || item.image}` +
                             '" alt="' +
                             item.name +
                             '" /></div><div class="item-slot-amount"><p>' +
@@ -2691,7 +2691,7 @@ var requiredItemOpen = false;
                             " (" +
                             ((item.weight * item.amount) / 1000).toFixed(1) +
                             ')</p></div><div class="item-slot-label"><p>' +
-                            item.label +
+                            `${item.info.label || item.label}` +
                             "</p></div>"
                         );
                     $(".player-inventory")
@@ -2729,12 +2729,12 @@ var requiredItemOpen = false;
             $.each(data.items, function(i, item) {
                 if (item != null) {
                     var ItemLabel =
-                        '<div class="item-slot-label"><p>' + item.label + "</p></div>";
+                        '<div class="item-slot-label"><p>' + `${item.info.label || item.label}` + "</p></div>";
                     if (item.name.split("_")[0] == "weapon") {
                         if (!Inventory.IsWeaponBlocked(item.name)) {
                             ItemLabel =
                                 '<div class="item-slot-quality"><div class="item-slot-quality-bar"><p>100</p></div></div><div class="item-slot-label"><p>' +
-                                item.label +
+                                `${item.info.label || item.label}` +
                                 "</p></div>";
                         }
                     }
@@ -2743,7 +2743,7 @@ var requiredItemOpen = false;
                             .find("[data-zhotbarslot=" + item.slot + "]")
                             .html(
                                 '<div class="z-hotbar-item-slot-key"><p>6 <i class="fas fa-lock"></i></p></div><div class="z-hotbar-item-slot-img"><img src="images/' +
-                                item.image +
+                                `${item.info.image || item.image}` +
                                 '" alt="' +
                                 item.name +
                                 '" /></div><div class="z-hotbar-item-slot-amount"><p>' +
@@ -2760,7 +2760,7 @@ var requiredItemOpen = false;
                                 '<div class="z-hotbar-item-slot-key"><p>' +
                                 item.slot +
                                 '</p></div><div class="z-hotbar-item-slot-img"><img src="images/' +
-                                item.image +
+                                `${item.info.image || item.image}` +
                                 '" alt="' +
                                 item.name +
                                 '" /></div><div class="z-hotbar-item-slot-amount"><p>' +
@@ -2786,10 +2786,10 @@ var requiredItemOpen = false;
         $(".itembox-container").hide();
         $(".itembox-container").fadeIn(250);
         $("#itembox-action").html("<p>Used</p>");
-        $("#itembox-label").html("<p>" + data.item.label + "</p>");
+        $("#itembox-label").html("<p>" + `${data.item.label}` + "</p>");
         $("#itembox-image").html(
             '<div class="item-slot-img"><img src="images/' +
-            data.item.image +
+            `${data.item.image}` +
             '" alt="' +
             data.item.name +
             '" /></div>'
@@ -2819,9 +2819,9 @@ var requiredItemOpen = false;
             '<div id="itembox-action"><p>' +
             type +
             '</p></div><div id="itembox-label"><p>' +
-            data.item.label +
+            `${data.item.label}` +
             '</p></div><div class="item-slot-img"><img src="images/' +
-            data.item.image +
+            `${data.item.image}` +
             '" alt="' +
             data.item.name +
             '" /></div>'
@@ -2845,9 +2845,9 @@ var requiredItemOpen = false;
                 $.each(data.items, function(index, item) {
                     var element =
                         '<div class="requiredItem-box"><div id="requiredItem-action">Required</div><div id="requiredItem-label"><p>' +
-                        item.label +
+                        `${item.info.label || item.label}` +
                         '</p></div><div id="requiredItem-image"><div class="item-slot-img"><img src="images/' +
-                        item.image +
+                        `${item.info.image || item.image}` +
                         '" alt="' +
                         item.name +
                         '" /></div></div></div>';
