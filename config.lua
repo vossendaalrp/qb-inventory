@@ -3,7 +3,7 @@ Config = {}
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true' -- Use qb-target interactions (don't change this, go to your server.cfg and add `setr UseTarget true` to use this and just that from true to false or the other way around)
 
 Config.MaxInventoryWeight = 120000 -- Max weight a player can carry (default 120kg, written in grams)
-Config.MaxInventorySlots = 41 -- Max inventory slots for a player
+Config.MaxInventorySlots = 40 -- Max inventory slots for a player
 
 Config.KeyBinds = {
     Inventory = 'TAB',
@@ -12,13 +12,14 @@ Config.KeyBinds = {
 
 Config.CleanupDropTime = 15 * 60 -- How many seconds it takes for drops to be untouched before being deleted
 Config.MaxDropViewDistance = 12.5 -- The distance in GTA Units that a drop can be seen
-Config.UseItemDrop = false -- This will enable item object to spawn on drops instead of markers
+Config.UseItemDrop = true -- This will enable item object to spawn on drops instead of markers
 Config.ItemDropObject = `prop_nigel_bag_pickup` -- if Config.UseItemDrop is true, this will be the prop that spawns for the item
 
 Config.VendingObjects = {
     "prop_vend_soda_01",
     "prop_vend_soda_02",
-    "prop_vend_water_01"
+    "prop_vend_water_01",
+	"prop_vend_coffe_01",
 }
 
 Config.BinObjects = {
@@ -30,7 +31,7 @@ Config.CraftingObject = `prop_toolchest_05`
 Config.VendingItem = {
     [1] = {
         name = "kurkakola",
-        price = 4,
+        price = 2,
         amount = 50,
         info = {},
         type = "item",
@@ -38,7 +39,7 @@ Config.VendingItem = {
     },
     [2] = {
         name = "water_bottle",
-        price = 4,
+        price = 1,
         amount = 50,
         info = {},
         type = "item",
@@ -48,6 +49,102 @@ Config.VendingItem = {
 
 Config.CraftingItems = {
     [1] = {
+        name = "metalscrap1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap"] = 100,
+        },
+        type = "item",
+        slot = 1,
+        threshold = 0,
+        points = 1,
+    },
+    [2] = {
+        name = "plastic1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["plastic"] = 100,
+        },
+        type = "item",
+        slot = 2,
+        threshold = 0,
+        points = 1,
+    },
+    [3] = {
+        name = "copper1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["copper"] = 100,
+        },
+        type = "item",
+        slot = 3,
+        threshold = 0,
+        points = 1,
+    },
+    [4] = {
+        name = "aluminum1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["aluminum"] = 100,
+        },
+        type = "item",
+        slot = 4,
+        threshold = 0,
+        points = 1,
+    },
+    [5] = {
+        name = "iron1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron"] = 100,
+        },
+        type = "item",
+        slot = 5,
+        threshold = 0,
+        points = 1,
+    },
+    [6] = {
+        name = "steel1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["steel"] = 100,
+        },
+        type = "item",
+        slot = 6,
+        threshold = 0,
+        points = 1,
+    },
+    [7] = {
+        name = "rubber1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["rubber"] = 100,
+        },
+        type = "item",
+        slot = 7,
+        threshold = 0,
+        points = 1,
+    },
+    [8] = {
+        name = "glass1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["glass"] = 100,
+        },
+        type = "item",
+        slot = 8,
+        threshold = 0,
+        points = 1,
+    },
+	[9] = {
         name = "lockpick",
         amount = 50,
         info = {},
@@ -56,11 +153,11 @@ Config.CraftingItems = {
             ["plastic"] = 32,
         },
         type = "item",
-        slot = 1,
+        slot = 9,
         threshold = 0,
         points = 1,
     },
-    [2] = {
+    [10] = {
         name = "screwdriverset",
         amount = 50,
         info = {},
@@ -69,11 +166,11 @@ Config.CraftingItems = {
             ["plastic"] = 42,
         },
         type = "item",
-        slot = 2,
+        slot = 10,
         threshold = 0,
         points = 2,
     },
-    [3] = {
+    [11] = {
         name = "electronickit",
         amount = 50,
         info = {},
@@ -83,11 +180,11 @@ Config.CraftingItems = {
             ["aluminum"] = 28,
         },
         type = "item",
-        slot = 3,
+        slot = 11,
         threshold = 0,
         points = 3,
     },
-    [4] = {
+    [12] = {
         name = "radioscanner",
         amount = 50,
         info = {},
@@ -97,11 +194,11 @@ Config.CraftingItems = {
             ["steel"] = 40,
         },
         type = "item",
-        slot = 4,
+        slot = 12,
         threshold = 0,
         points = 4,
-    },
-    [5] = {
+    },	
+    [13] = {
         name = "gatecrack",
         amount = 50,
         info = {},
@@ -110,14 +207,30 @@ Config.CraftingItems = {
             ["plastic"] = 50,
             ["aluminum"] = 30,
             ["iron"] = 17,
-            ["electronickit"] = 2,
+            ["electronickit"] = 1,
         },
         type = "item",
-        slot = 5,
-        threshold = 110,
+        slot = 13,
+        threshold = 0,
         points = 5,
     },
-    [6] = {
+	[14] = {
+        name = "boostingdisabler",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap"] = 30,
+            ["plastic"] = 23,
+            ["aluminum"] = 28,
+			["copper"] = 10,
+			["rubber"] = 25,
+        },
+        type = "item",
+        slot = 14,
+        threshold = 0,
+        points = 6,
+    },
+    [15] = {
         name = "handcuffs",
         amount = 50,
         info = {},
@@ -127,11 +240,11 @@ Config.CraftingItems = {
             ["aluminum"] = 28,
         },
         type = "item",
-        slot = 6,
+        slot = 15,
         threshold = 160,
         points = 6,
     },
-    [7] = {
+    [16] = {
         name = "repairkit",
         amount = 50,
         info = {},
@@ -141,11 +254,11 @@ Config.CraftingItems = {
             ["plastic"] = 61,
         },
         type = "item",
-        slot = 7,
+        slot = 16,
         threshold = 200,
         points = 7,
     },
-    [8] = {
+    [17] = {
         name = "pistol_ammo",
         amount = 50,
         info = {},
@@ -155,11 +268,11 @@ Config.CraftingItems = {
             ["copper"] = 26,
         },
         type = "item",
-        slot = 8,
+        slot = 17,
         threshold = 250,
         points = 8,
     },
-    [9] = {
+    [18] = {
         name = "ironoxide",
         amount = 50,
         info = {},
@@ -168,11 +281,11 @@ Config.CraftingItems = {
             ["glass"] = 30,
         },
         type = "item",
-        slot = 9,
+        slot = 18,
         threshold = 300,
         points = 9,
     },
-    [10] = {
+    [19] = {
         name = "aluminumoxide",
         amount = 50,
         info = {},
@@ -181,11 +294,11 @@ Config.CraftingItems = {
             ["glass"] = 30,
         },
         type = "item",
-        slot = 10,
+        slot = 19,
         threshold = 300,
         points = 10,
     },
-    [11] = {
+    [20] = {
         name = "armor",
         amount = 50,
         info = {},
@@ -196,11 +309,11 @@ Config.CraftingItems = {
             ["aluminum"] = 22,
         },
         type = "item",
-        slot = 11,
+        slot = 20,
         threshold = 350,
         points = 11,
     },
-    [12] = {
+    [21] = {
         name = "drill",
         amount = 50,
         info = {},
@@ -211,9 +324,241 @@ Config.CraftingItems = {
             ["advancedlockpick"] = 2,
         },
         type = "item",
-        slot = 12,
-        threshold = 1750,
+        slot = 21,
+        threshold = 400,
         points = 12,
+    },
+	[22] = {
+        name = "snspistol_part_1",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 8,
+            ["plastic1"] = 8,
+            ["copper1"] = 8,
+        },
+        type = "item",
+        slot = 22,
+        threshold = 550,
+        points = 5,
+    },
+	[23] = {
+        name = "snspistol_part_3",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 8,
+            ["steel1"] = 8,
+        },
+        type = "item",
+        slot = 23,
+        threshold = 550,
+        points = 5,
+    },
+	[24] = {
+        name = "vintagepistolhand",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 10,
+            ["plastic1"] = 10,
+            ["copper1"] = 10,
+        },
+        type = "item",
+        slot = 24,
+        threshold = 600,
+        points = 5,
+    },
+	[25] = {
+        name = "vintagepistolloop",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 10,
+            ["steel1"] = 10,
+        },
+        type = "item",
+        slot = 25,
+        threshold = 600,
+        points = 5,
+    },
+	[26] = {
+        name = "berettahandvat",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 14,
+            ["plastic1"] = 14,
+            ["copper1"] = 14,
+        },
+        type = "item",
+        slot = 26,
+        threshold = 650,
+        points = 5,
+    },
+	[27] = {
+        name = "berettaloop",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 14,
+            ["steel1"] = 14,
+        },
+        type = "item",
+        slot = 27,
+        threshold = 650,
+        points = 5,
+    },
+	[28] = {
+        name = "machinepistolhand",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 18,
+            ["plastic1"] = 18,
+            ["copper1"] = 18,
+        },
+        type = "item",
+        slot = 28,
+        threshold = 700,
+        points = 5,
+    },
+	[29] = {
+        name = "machinepistolloop",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 18,
+            ["steel1"] = 18,
+        },
+        type = "item",
+        slot = 29,
+        threshold = 700,
+        points = 5,
+    },
+	[30] = {
+        name = "machinepistolmag",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 18,
+            ["aluminum1"] = 18
+        },
+        type = "item",
+        slot = 30,
+        threshold = 700,
+        points = 5,
+    },
+	[31] = {
+        name = "minismghand",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 20,
+            ["plastic1"] = 20,
+            ["copper1"] = 20,
+        },
+        type = "item",
+        slot = 31,
+        threshold = 750,
+        points = 5,
+    },
+	[32] = {
+        name = "minismgloop",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 20,
+            ["steel1"] = 20,
+        },
+        type = "item",
+        slot = 32,
+        threshold = 750,
+        points = 5,
+    },
+	[33] = {
+        name = "minismgmag",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 20,
+            ["aluminum1"] = 20,
+        },
+        type = "item",
+        slot = 33,
+        threshold = 750,
+        points = 5,
+    },
+	[34] = {
+        name = "compactriflhandvat",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 25,
+            ["plastic1"] = 25,
+            ["copper1"] = 25,
+        },
+        type = "item",
+        slot = 34,
+        threshold = 850,
+        points = 5,
+    },
+	[35] = {
+        name = "compactrifleloop",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 25,
+            ["steel1"] = 25,
+        },
+        type = "item",
+        slot = 35,
+        threshold = 850,
+        points = 5,
+    },
+	[36] = {
+        name = "compactriflemagazijn",
+        amount = 50,
+        info = {},
+        costs = {
+            ["iron1"] = 25,
+            ["aluminum1"] = 25,	
+        },
+        type = "item",
+        slot = 36,
+        threshold = 850,
+        points = 5,
+    },
+	[37] = {
+        name = "smg_ammo",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 1,
+            ["steel1"] = 1,
+            ["copper1"] = 1,
+        },
+        type = "item",
+        slot = 37,
+        threshold = 850,
+        points = 8,
+    },
+	[38] = {
+        name = "rifle_ammo",
+        amount = 50,
+        info = {},
+        costs = {
+            ["metalscrap1"] = 1,
+            ["steel1"] = 1,
+            ["copper1"] = 1,
+			["metalscrap"] = 15,
+            ["steel"] = 30,
+            ["copper"] = 40,
+        },
+        type = "item",
+        slot = 38,
+        threshold = 900,
+        points = 8,
     },
 }
 
@@ -376,7 +721,8 @@ BackEngineVehicles = {
     [`surfer2`] = true,
     [`gp1`] = true,
     [`autarch`] = true,
-    [`tyrant`] = true
+    [`tyrant`] = true,
+    [`f7016`] = true
 }
 
 Config.MaximumAmmoValues = {

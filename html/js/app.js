@@ -139,7 +139,7 @@ $(document).on("click", ".item-slot", function(e) {
             if (ItemData.name.split("_")[0] == "weapon") {
                 if (!$("#weapon-attachments").length) {
                     $(".inv-options-list").append(
-                        '<div class="inv-option-item" id="weapon-attachments"><p>ATTACHMENTS</p></div>'
+                        '<div class="inv-option-item" id="weapon-attachments"><p>TOEBEHOREN</p></div>'
                     );
                     $("#weapon-attachments").hide().fadeIn(250);
                     ClickedItemData = ItemData;
@@ -227,9 +227,9 @@ function FormatAttachmentInfo(data) {
                 data.WeaponData.description
             );
             $(".weapon-attachments-container-details").html(
-                '<span style="font-weight: bold; letter-spacing: .1vh;">Serial Number</span><br> ' +
+                '<span style="font-weight: bold; letter-spacing: .1vh;">Serienummer</span><br> ' +
                 ClickedItemData.info.serie +
-                '<br><br><span style="font-weight: bold; letter-spacing: .1vh;">Durability - ' +
+                '<br><br><span style="font-weight: bold; letter-spacing: .1vh;">Staat - ' +
                 Durability.toFixed() +
                 '% </span> <div class="weapon-attachments-container-detail-durability"><div class="weapon-attachments-container-detail-durability-total"></div></div>'
             );
@@ -245,7 +245,7 @@ function FormatAttachmentInfo(data) {
             if (data.AttachmentData !== null && data.AttachmentData !== undefined) {
                 if (data.AttachmentData.length > 0) {
                     $(".weapon-attachments-title").html(
-                        '<span style="font-weight: bold; letter-spacing: .1vh;">Attachments</span>'
+                        '<span style="font-weight: bold; letter-spacing: .1vh;">Toebehoren</span>'
                     );
                     $.each(data.AttachmentData, function(i, attachment) {
                         var WeaponType = data.WeaponData.ammotype
@@ -267,12 +267,12 @@ function FormatAttachmentInfo(data) {
                     });
                 } else {
                     $(".weapon-attachments-title").html(
-                        '<span style="font-weight: bold; letter-spacing: .1vh;">This gun doesn\'t contain attachments</span>'
+                        '<span style="font-weight: bold; letter-spacing: .1vh;">Dit wapen heeft geen toebehoren</span>'
                     );
                 }
             } else {
                 $(".weapon-attachments-title").html(
-                    '<span style="font-weight: bold; letter-spacing: .1vh;">This gun doesn\'t contain attachments</span>'
+                    '<span style="font-weight: bold; letter-spacing: .1vh;">Dit wapen heeft geen toebehoren</span>'
                 );
             }
 
@@ -329,7 +329,7 @@ function handleAttachmentDrag() {
                                 }
                             );
                             $(".weapon-attachments-title").html(
-                                '<span style="font-weight: bold; letter-spacing: .1vh;">This gun doesn\'t contain attachments</span>'
+                                '<span style="font-weight: bold; letter-spacing: .1vh;">Dit wapen heeft geen toebehoren</span>'
                             );
                         }
                     } else {
@@ -342,7 +342,7 @@ function handleAttachmentDrag() {
                             }
                         );
                         $(".weapon-attachments-title").html(
-                            '<span style="font-weight: bold; letter-spacing: .1vh;">This gun doesn\'t contain attachments</span>'
+                            '<span style="font-weight: bold; letter-spacing: .1vh;">Dit wapen heeft geen toebehoren</span>'
                         );
                     }
                 }
@@ -374,7 +374,7 @@ $(document).on("click", "#weapon-attachments", function(e) {
         $.post(
             "https://qb-inventory/Notify",
             JSON.stringify({
-                message: "Attachments are unavailable for this gun.",
+                message: "Toebehoren onbeschikbaar voor dit wapen.",
                 type: "error",
             })
         );
@@ -384,47 +384,44 @@ $(document).on("click", "#weapon-attachments", function(e) {
 function FormatItemInfo(itemData) {
     if (itemData != null && itemData.info != "") {
         if (itemData.name == "id_card") {
-            var gender = "Man";
-            if (itemData.info.gender == 1) {
-                gender = "Woman";
-            }
+            gender = (itemData.info.gender == 1) ? "Vrouw" : "Man";
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
-                "<p><strong>CSN: </strong><span>" +
+                "<p><strong>Rijksregisternummer: </strong><span>" +
                 itemData.info.citizenid +
-                "</span></p><p><strong>First Name: </strong><span>" +
+                "</span></p><p><strong>Voornaam: </strong><span>" +
                 itemData.info.firstname +
-                "</span></p><p><strong>Last Name: </strong><span>" +
+                "</span></p><p><strong>Achternaam: </strong><span>" +
                 itemData.info.lastname +
-                "</span></p><p><strong>Birth Date: </strong><span>" +
+                "</span></p><p><strong>Geboortedatum: </strong><span>" +
                 itemData.info.birthdate +
-                "</span></p><p><strong>Gender: </strong><span>" +
+                "</span></p><p><strong>Geslacht: </strong><span>" +
                 gender +
-                "</span></p><p><strong>Nationality: </strong><span>" +
+                "</span></p><p><strong>Nationaliteit: </strong><span>" +
                 itemData.info.nationality +
                 "</span></p>"
             );
         } else if (itemData.name == "driver_license") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
-                "<p><strong>First Name: </strong><span>" +
+                "<p><strong>Voornaam: </strong><span>" +
                 itemData.info.firstname +
-                "</span></p><p><strong>Last Name: </strong><span>" +
+                "</span></p><p><strong>Achternaam: </strong><span>" +
                 itemData.info.lastname +
-                "</span></p><p><strong>Birth Date: </strong><span>" +
+                "</span></p><p><strong>Geboortedatum: </strong><span>" +
                 itemData.info.birthdate +
-                "</span></p><p><strong>Licenses: </strong><span>" +
+                "</span></p><p><strong>Rijbewijzen: </strong><span>" +
                 itemData.info.type +
                 "</span></p>"
             );
         } else if (itemData.name == "weaponlicense") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
-                "<p><strong>First Name: </strong><span>" +
+                "<p><strong>Voornaam: </strong><span>" +
                 itemData.info.firstname +
-                "</span></p><p><strong>Last Name: </strong><span>" +
+                "</span></p><p><strong>Achternaam: </strong><span>" +
                 itemData.info.lastname +
-                "</span></p><p><strong>Birth Date: </strong><span>" +
+                "</span></p><p><strong>Geboortedatum: </strong><span>" +
                 itemData.info.birthdate +
                 "</span></p>"
             );
@@ -433,18 +430,18 @@ function FormatItemInfo(itemData) {
             $(".item-info-description").html(
                 "<p><strong>Pass-ID: </strong><span>" +
                 itemData.info.id +
-                "</span></p><p><strong>First Name: </strong><span>" +
+                "</span></p><p><strong>Voornaam: </strong><span>" +
                 itemData.info.firstname +
-                "</span></p><p><strong>Last Name: </strong><span>" +
+                "</span></p><p><strong>Achternaam: </strong><span>" +
                 itemData.info.lastname +
-                "</span></p><p><strong>CSN: </strong><span>" +
+                "</span></p><p><strong>Rijksregisternummer: </strong><span>" +
                 itemData.info.citizenid +
                 "</span></p>"
             );
         } else if (itemData.name == "harness") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
-                "<p>" + itemData.info.uses + " uses left.</p>"
+                "<p>" + itemData.info.uses + " gebruiken over.</p>"
             );
         } else if (itemData.type == "weapon") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
@@ -463,19 +460,19 @@ function FormatItemInfo(itemData) {
                     }
                 });
                 $(".item-info-description").html(
-                    "<p><strong>Serial Number: </strong><span>" +
+                    "<p><strong>Serienummer: </strong><span>" +
                     itemData.info.serie +
-                    "</span></p><p><strong>Munition: </strong><span>" +
+                    "</span></p><p><strong>Munitie: </strong><span>" +
                     itemData.info.ammo +
-                    "</span></p><p><strong>Attachments: </strong><span>" +
+                    "</span></p><p><strong>Toebehoren: </strong><span>" +
                     attachmentString +
                     "</span></p>"
                 );
             } else {
                 $(".item-info-description").html(
-                    "<p><strong>Serial Number: </strong><span>" +
+                    "<p><strong>Serienummer: </strong><span>" +
                     itemData.info.serie +
-                    "</span></p><p><strong>Munition: </strong><span>" +
+                    "</span></p><p><strong>Munitie: </strong><span>" +
                     itemData.info.ammo +
                     "</span></p><p>" +
                     itemData.description +
@@ -486,15 +483,15 @@ function FormatItemInfo(itemData) {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             if (itemData.info.type == "casing") {
                 $(".item-info-description").html(
-                    "<p><strong>Evidence material: </strong><span>" +
+                    "<p><strong>Bewijsmateriaal: </strong><span>" +
                     itemData.info.label +
-                    "</span></p><p><strong>Type number: </strong><span>" +
+                    "</span></p><p><strong>Type nummer: </strong><span>" +
                     itemData.info.ammotype +
-                    "</span></p><p><strong>Caliber: </strong><span>" +
+                    "</span></p><p><strong>Kaliber: </strong><span>" +
                     itemData.info.ammolabel +
-                    "</span></p><p><strong>Serial Number: </strong><span>" +
+                    "</span></p><p><strong>Serienummer: </strong><span>" +
                     itemData.info.serie +
-                    "</span></p><p><strong>Crime scene: </strong><span>" +
+                    "</span></p><p><strong>Locatie: </strong><span>" +
                     itemData.info.street +
                     "</span></p><br /><p>" +
                     itemData.description +
@@ -502,13 +499,13 @@ function FormatItemInfo(itemData) {
                 );
             } else if (itemData.info.type == "blood") {
                 $(".item-info-description").html(
-                    "<p><strong>Evidence material: </strong><span>" +
+                    "<p><strong>Bewijsmateriaal: </strong><span>" +
                     itemData.info.label +
-                    "</span></p><p><strong>Blood type: </strong><span>" +
+                    "</span></p><p><strong>Bloed type: </strong><span>" +
                     itemData.info.bloodtype +
                     "</span></p><p><strong>DNA Code: </strong><span>" +
                     itemData.info.dnalabel +
-                    "</span></p><p><strong>Crime scene: </strong><span>" +
+                    "</span></p><p><strong>Locatie: </strong><span>" +
                     itemData.info.street +
                     "</span></p><br /><p>" +
                     itemData.description +
@@ -516,11 +513,11 @@ function FormatItemInfo(itemData) {
                 );
             } else if (itemData.info.type == "fingerprint") {
                 $(".item-info-description").html(
-                    "<p><strong>Evidence material: </strong><span>" +
+                    "<p><strong>Bewijsmateriaal: </strong><span>" +
                     itemData.info.label +
-                    "</span></p><p><strong>Fingerprint: </strong><span>" +
+                    "</span></p><p><strong>Vingerafdruk: </strong><span>" +
                     itemData.info.fingerprint +
-                    "</span></p><p><strong>Crime Scene: </strong><span>" +
+                    "</span></p><p><strong>Locatie: </strong><span>" +
                     itemData.info.street +
                     "</span></p><br /><p>" +
                     itemData.description +
@@ -528,7 +525,7 @@ function FormatItemInfo(itemData) {
                 );
             } else if (itemData.info.type == "dna") {
                 $(".item-info-description").html(
-                    "<p><strong>Evidence material: </strong><span>" +
+                    "<p><strong>Bewijsmateriaal: </strong><span>" +
                     itemData.info.label +
                     "</span></p><p><strong>DNA Code: </strong><span>" +
                     itemData.info.dnalabel +
@@ -537,7 +534,10 @@ function FormatItemInfo(itemData) {
                     "</p>"
                 );
             }
-        } else if (
+        } else if (itemData.name == "carkey") {
+			$(".item-info-title").html('<p>'+itemData.label+'</p>')
+			$(".item-info-description").html("<p><strong>Merk: </strong>" + itemData.info.brand + "</p><p><strong>Naam: </strong>" + itemData.info.name + "</p><p><strong>Voertuig ID: </strong>" + itemData.info.id + "</p>");
+		} else if (
             itemData.info.costs != undefined &&
             itemData.info.costs != null
         ) {
@@ -549,14 +549,14 @@ function FormatItemInfo(itemData) {
         } else if (itemData.name == "moneybag") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
-                "<p><strong>Amount of cash: </strong><span>$" +
+                "<p><strong>Waarde: </strong><span>&euro; " +
                 itemData.info.cash +
                 "</span></p>"
             );
         } else if (itemData.name == "markedbills") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
-                "<p><strong>Worth: </strong><span>$" +
+                "<p><strong>Waarde: </strong><span>&euro; " +
                 itemData.info.worth +
                 "</span></p>"
             );
@@ -565,7 +565,7 @@ function FormatItemInfo(itemData) {
             var str = ""+ itemData.info.cardNumber + "";
             var res = str.slice(12);
             var cardNumber = "************" + res;
-            $(".item-info-description").html('<p><strong>Card Holder: </strong><span>' + itemData.info.name + '</span></p><p><strong>Citizen ID: </strong><span>' + itemData.info.citizenid + '</span></p><p><strong>Card Number: </strong><span>' + cardNumber + '</span></p>');			
+            $(".item-info-description").html('<p><strong>Kaarthouder: </strong><span>' + itemData.info.name + '</span></p><p><strong>Rijksregisternummer: </strong><span>' + itemData.info.citizenid + '</span></p><p><strong>Kaartnummer: </strong><span>' + cardNumber + '</span></p>');			
         } else if (itemData.name == "labkey") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html("<p>Lab: " + itemData.info.lab + "</p>");
@@ -602,7 +602,7 @@ function handleDragDrop() {
                     $(this).find(".item-slot-amount p").html("0 (0.0)");
                     $(".ui-draggable-dragging")
                         .find(".item-slot-amount p")
-                        .html("(" + itemData.amount + ") $" + itemData.price);
+                        .html("(" + itemData.amount + ") &euro; " + itemData.price);
                     $(".ui-draggable-dragging").find(".item-slot-key").remove();
                     if ($(this).parent().attr("data-inventory") == "hotbar") {
                     }
@@ -624,7 +624,7 @@ function handleDragDrop() {
                 if (itemData.price != null) {
                     $(this)
                         .find(".item-slot-amount p")
-                        .html("(" + itemData.amount + ") $" + itemData.price);
+                        .html("(" + itemData.amount + ") &euro; " + itemData.price);
                     if ($(this).parent().attr("data-inventory") == "hotbar") {
                     }
                 } else {
@@ -644,10 +644,10 @@ function handleDragDrop() {
                 if (itemData.price != null) {
                     $(this)
                         .find(".item-slot-amount p")
-                        .html("(" + itemData.amount + ") $" + itemData.price);
+                        .html("(" + itemData.amount + ") &euro; " + itemData.price);
                     $(".ui-draggable-dragging")
                         .find(".item-slot-amount p")
-                        .html("(" + itemData.amount + ") $" + itemData.price);
+                        .html("(" + itemData.amount + ") &euro; " + itemData.price);
                     $(".ui-draggable-dragging").find(".item-slot-key").remove();
                     if ($(this).parent().attr("data-inventory") == "hotbar") {
                     }
@@ -814,7 +814,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>(' +
                     itemData.amount +
-                    ") $" +
+                    ") &euro; " +
                     itemData.price +
                     '</p></div><div class="item-slot-label"><p>' +
                     itemData.label +
@@ -858,7 +858,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>(' +
                     itemData.amount +
-                    ") $" +
+                    ") &euro; " +
                     itemData.price +
                     '</p></div><div class="item-slot-label"><p>' +
                     itemData.label +
@@ -901,7 +901,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                     itemData.name +
                     '" /></div><div class="item-slot-amount"><p>(' +
                     itemData.amount +
-                    ") $" +
+                    ") &euro; " +
                     itemData.price +
                     '</p></div><div class="item-slot-label"><p>' +
                     itemData.label +
@@ -980,7 +980,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
         "⚖️: " +
         (parseInt(totalWeight) / 1000).toFixed(2) +
         " / " +
-        (playerMaxWeight / 1000).toFixed(2)
+        (playerMaxWeight / 1000).toFixed(2) + " KG"
     );
     if (
         $fromInv.attr("data-inventory").split("-")[0] != "itemshop" &&
@@ -993,7 +993,7 @@ function updateweights($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
             "⚖️: " +
             (parseInt(totalWeightOther) / 1000).toFixed(2) +
             " / " +
-            (otherMaxWeight / 1000).toFixed(2)
+            (otherMaxWeight / 1000).toFixed(2) + " KG"
         );
     }
 
@@ -1445,7 +1445,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                             newDataFrom.name +
                             '" /></div><div class="item-slot-amount"><p>(' +
                             newDataFrom.amount +
-                            ") $" +
+                            ") &euro; " +
                             newDataFrom.price +
                             '</p></div><div class="item-slot-label"><p>' +
                             newDataFrom.label +
@@ -2023,7 +2023,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                             newDataFrom.name +
                             '" /></div><div class="item-slot-amount"><p>(' +
                             newDataFrom.amount +
-                            ") $" +
+                            ") &euro; " +
                             newDataFrom.price +
                             '</p></div><div class="item-slot-label"><p>' +
                             newDataFrom.label +
@@ -2346,6 +2346,7 @@ var requiredItemOpen = false;
         }
 
         if (data.other != null && data.other != "") {
+			if (data.other.slots == 39) data.other.slots = 40
             for (i = 1; i < data.other.slots + 1; i++) {
                 $(".other-inventory").append(
                     '<div class="item-slot" data-slot="' +
@@ -2482,7 +2483,7 @@ var requiredItemOpen = false;
                                 item.name +
                                 '" /></div><div class="item-slot-amount"><p>(' +
                                 item.amount +
-                                ") $" +
+                                ") &euro; " +
                                 item.price +
                                 "</p></div>" +
                                 ItemLabel
@@ -2515,7 +2516,7 @@ var requiredItemOpen = false;
             "⚖️: " +
             (totalWeight / 1000).toFixed(2) +
             " / " +
-            (data.maxweight / 1000).toFixed(2)
+            (data.maxweight / 1000).toFixed(2) + " KG"
         );
         playerMaxWeight = data.maxweight;
         if (data.other != null) {
@@ -2531,7 +2532,7 @@ var requiredItemOpen = false;
                     "⚖️: " +
                     (totalWeightOther / 1000).toFixed(2) +
                     " / " +
-                    (data.other.maxweight / 1000).toFixed(2)
+                    (data.other.maxweight / 1000).toFixed(2) + " KG"
                 );
             }
             otherMaxWeight = data.other.maxweight;
@@ -2542,7 +2543,7 @@ var requiredItemOpen = false;
                 "⚖️: " +
                 (totalWeightOther / 1000).toFixed(2) +
                 " / " +
-                (Inventory.dropmaxweight / 1000).toFixed(2)
+                (Inventory.dropmaxweight / 1000).toFixed(2) + " KG"
             );
             otherMaxWeight = Inventory.dropmaxweight;
             otherLabel = Inventory.droplabel;
@@ -2704,7 +2705,7 @@ var requiredItemOpen = false;
             "⚖️: " +
             (totalWeight / 1000).toFixed(2) +
             " / " +
-            (data.maxweight / 1000).toFixed(2)
+            (data.maxweight / 1000).toFixed(2) + " KG"
         );
 
         handleDragDrop();
@@ -2722,9 +2723,9 @@ var requiredItemOpen = false;
                     '</p></div><div class="z-hotbar-item-slot-img"></div><div class="z-hotbar-item-slot-label"><p>&nbsp;</p></div></div>';
                 $(".z-hotbar-inventory").append(elem);
             }
-            var elem =
+            /* var elem =
                 '<div class="z-hotbar-item-slot" data-zhotbarslot="41"> <div class="z-hotbar-item-slot-key"><p>6 <i class="fas fa-lock"></i></p></div><div class="z-hotbar-item-slot-img"></div><div class="z-hotbar-item-slot-label"><p>&nbsp;</p></div></div>';
-            $(".z-hotbar-inventory").append(elem);
+            $(".z-hotbar-inventory").append(elem); */
             $.each(data.items, function(i, item) {
                 if (item != null) {
                     var ItemLabel =
@@ -2805,11 +2806,11 @@ var requiredItemOpen = false;
         if (itemBoxtimer !== null) {
             clearTimeout(itemBoxtimer);
         }
-        var type = "Used";
+        var type = "Gebruikt";
         if (data.type == "add") {
-            type = "Received";
+            type = "Ontvangen";
         } else if (data.type == "remove") {
-            type = "Removed";
+            type = "Verwijderd";
         }
 
         var $itembox = $(".itembox-container.template").clone();
@@ -2888,7 +2889,7 @@ var requiredItemOpen = false;
                     break;
                 case "RobMoney":
                     $(".inv-options-list").append(
-                        '<div class="inv-option-item" id="rob-money"><p>TAKE MONEY</p></div>'
+                        '<div class="inv-option-item" id="rob-money"><p>GELD PAKKEN</p></div>'
                     );
                     $("#rob-money").data("TargetId", event.data.TargetId);
                     break;
